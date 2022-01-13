@@ -33,15 +33,27 @@ const months = [ "January", "February", "March", "April", "May", "June", "July",
 
 // Define an array of objects representing the customers
 const customers = [
-    {
-        firstName: "William",
-        lastName: "Johnson",
-        id: 1,
-        yearBorn: 1970,
-        monthBorn: "June"
-    }
+    { firstName: "William", lastName: "Johnson", id: 1, yearBorn: 1970, monthBorn: "June" },
+    { firstName: "Halle", lastName: "Johnson", id: 2, yearBorn: 1988, monthBorn: "September" },
+    { firstName: "Santina", lastName: "Veum", id: 3, yearBorn: 1994, monthBorn: "October" },
+    { firstName: "Camylle", lastName: "Ward", id: 4, yearBorn: 1965, monthBorn: "June" },
+    { firstName: "Paula", lastName: "Green", id: 5, yearBorn: 1983, monthBorn: "January" },
+    { firstName: "Russel", lastName: "Bayer", id: 6, yearBorn: 1977, monthBorn: "July" },
+    { firstName: "Jovan", lastName: "Gutmann", id: 7, yearBorn: 1999, monthBorn: "March" },
+    { firstName: "Darrel", lastName: "Metz", id: 8, yearBorn: 1993, monthBorn: "December" },
+    { firstName: "Eveline", lastName: "Feil", id: 9, yearBorn: 1978, monthBorn: "March" }
 ]
 
+
+
+
+/*
+2022
+"April"
+---------------
+Lisa Jackson is n years old
+Michael Weathersby is n years old
+*/
 
 // Define a function to calculate a customer's age
 const calculateAge = (customerObject, currentYear) => {
@@ -49,33 +61,34 @@ const calculateAge = (customerObject, currentYear) => {
     return age
 }
 
-
-/*
-        2022
-        "April"
-        ---------------
-        Lisa Jackson is n years old
-        Michael Weathersby is n years old
-*/
+const displayCustomerString = (customerObject, currentYear) => {
+    const customerAge = calculateAge(customerObject, currentYear)
+    console.log(`${customerObject.firstName} ${customerObject.lastName} is ${customerAge} years old.`)
+}
 
 // Iterate the years array
 for (const year of years) {
     // Within the year iteration, iterate the months array
     for (const month of months) {
         // Display current year
+        console.log(year)
         // Display current month
+        console.log(month)
         // Display dashes
+        console.log("---------------")
 
 
         // Within the month array iteration, iterate the customers object array
         for (const customer of customers) {
             // Compare the `monthBorn` property of the customer and `month`
-
-            // If they are equal, print customer name and age (use calculateAge function here)
+            if (customer.monthBorn === month) {
+                // If they are equal, print customer name and age (use calculateAge function here)
+                displayCustomerString(customer, year)
+            }
         }
 
+        console.log("\n\n")
     }
-
 }
 
 
