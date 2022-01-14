@@ -31,6 +31,8 @@ const years = [ 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031 ]
 // Define an array for all month names as strings
 const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
+
+
 // Define an array of objects representing the customers
 const customers = [
     { firstName: "William", lastName: "Johnson", id: 1, yearBorn: 1970, monthBorn: "June" },
@@ -44,16 +46,6 @@ const customers = [
     { firstName: "Eveline", lastName: "Feil", id: 9, yearBorn: 1978, monthBorn: "March" }
 ]
 
-
-
-
-/*
-2022
-"April"
----------------
-Lisa Jackson is n years old
-Michael Weathersby is n years old
-*/
 
 // Define a function to calculate a customer's age
 const calculateAge = (customerObject, currentYear) => {
@@ -70,24 +62,41 @@ const displayCustomerString = (customerObject, currentYear) => {
 for (const year of years) {
     // Within the year iteration, iterate the months array
     for (const month of months) {
-        // Display current year
-        console.log(year)
-        // Display current month
-        console.log(month)
-        // Display dashes
-        console.log("---------------")
 
+        // Check if there are any customer birthdays in the current month
 
-        // Within the month array iteration, iterate the customers object array
+        // Start off assuming there are no birthdays this month
+        const birthdayMessages = []
+
+        // Iterate customers
         for (const customer of customers) {
-            // Compare the `monthBorn` property of the customer and `month`
+            // If current customer does have a birthday, assumption is now false. There is a birthday.
             if (customer.monthBorn === month) {
-                // If they are equal, print customer name and age (use calculateAge function here)
-                displayCustomerString(customer, year)
+                // Add customer info to collection of birthday messages
+                const customerAge = calculateAge(customer, year)
+                birthdayMessages.push(`${customer.firstName} ${customer.lastName} is ${customerAge} years old.`)
             }
         }
 
-        console.log("\n\n")
+        // If the array has at least one message
+        if (birthdayMessages.length > 0) {
+
+            // Display current year
+            // console.log(year)
+            // Display current month
+            // console.log(month)
+            // Display dashes
+            // console.log("---------------")
+
+            // Print all the messages
+            for (const message of birthdayMessages) {
+                // console.log(message)
+            }
+
+            // console.log("\n\n")
+        }
+
+
     }
 }
 
